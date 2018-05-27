@@ -16,4 +16,21 @@ public class StampTest extends TestCase {
         assertTrue("Full Constructor", mystamp.getYear().equalsIgnoreCase("1840"));
     }
 
+    public void testSetStamp() {
+        Stamp mystamp = new Stamp();
+        String expectedResult = "Stamp{name : Sally Ride, value : Forever, year : 2018, country : US }";
+
+        mystamp.setStamp("Sally Ride", "Forever", "2018", "US");
+
+        assertTrue("Set Stamp", mystamp.toString().equalsIgnoreCase(expectedResult));
+    }
+
+  /*  public void testSetStamp() {
+        Stamp mystamp = new Stamp();
+        String expectedResult = "Stamp{name : Sally Ride, value : Forever, year : 2018, country : US }";
+
+        mystamp.setStamp("Sally Ride", "Forever", "2018", "US");
+
+        assertTrue("Set Stamp", mystamp.toString().equalsIgnoreCase(expectedResult));
+    } */
 }

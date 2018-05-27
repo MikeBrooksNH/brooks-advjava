@@ -1,5 +1,6 @@
 /**
  * Program Name:    Collectable.java
+ * Author:          Michael Brooks
  * Version:         Version 1.0
  * Course:          Advanced Java Programming, Summer 2018
  * Copyright:       (C) 2018 Michael A. Brooks
@@ -22,8 +23,7 @@ public class CollectableImpl implements Icollectable {
 
     /**
      *
-     * @return String person's name
-     * what's being collected
+     * @return String what's being collected
      */
     public String getCollectableType() {
         return this.pileOf;
@@ -31,8 +31,7 @@ public class CollectableImpl implements Icollectable {
 
     /**
      *
-     * @param String
-     * What kind of collection
+     * @param String what's being collected
      */
     public void setCollectableType(String collectionType) {
         this.pileOf = collectionType;
@@ -40,25 +39,34 @@ public class CollectableImpl implements Icollectable {
 
     /**
      *
-     * @return boolean
-     * Can I get rich or not
+     * @return boolean  is there value in this collection or not
      */
-    // is it valuable or not
     public boolean getValuable() {
         return this.getRich;
     }
 
     /**
      *
-     * @param boolean
-     * Can I get rich or not with this collection
+     * @param boolean is there value in this collection or not
      */
     public void setValuable(boolean ofValue) {
         this.getRich = ofValue;
     }
 
     @Override
+    /**
+     * putting the collection type and realative value posibility into a string
+     */
     public String toString() {
-        return super.toString();
+
+        String retVal = this.pileOf;
+
+        if (this.getRich) {
+            retVal += " could be a valuable collection";
+        } else {
+            retVal += " might not be worth the time";
+        }
+
+        return retVal;
     }
 }

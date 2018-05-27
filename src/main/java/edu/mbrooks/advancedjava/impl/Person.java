@@ -1,5 +1,6 @@
 /**
  * Program Name:    Person.java
+ * Author:          Michael Brooks
  * Version:         Version 1.0
  * Course:          Advanced Java Programming, Summer 2018
  * Copyright:       (C) 2018 Michael A. Brooks
