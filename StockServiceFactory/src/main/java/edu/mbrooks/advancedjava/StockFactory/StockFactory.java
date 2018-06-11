@@ -8,49 +8,93 @@
  * @author Michael Brooks
  * @version 1.0
  */
-package edu.mbrooks.advancedjava.StockFactory;
-import edu.mbrooks.advancedjava.StockQuote.*;
-import edu.mbrooks.advancedjava.StockFactory.*;
-import edu.mbrooks.advancedjava.StockService.*;
+package edu.mbrooks.advancedjava.stockfactory;
+import edu.mbrooks.advancedjava.stockquote.*;
+import edu.mbrooks.advancedjava.stockservice.*;
+
+import java.util.*;
 
 /**
- *  The StockTrader class implements the SockService interface
+ *  The BasicStockService class implements the SockService interface
  */
-class StockTrader implements StockService {
+class BasicStockService implements StockService {
 
-    StockQuote quote = new StockQuote();
+    private Calendar cal = Calendar.getInstance();
+    private StockQuote quote;
+    private List<StockQuote> historyQuotes = new ArrayList<>();
+
 
     /**
-     * No argument contructor (temporarily setting the ticker symbol to APPL
+     * contructor requires a quote
      *
      */
-    public StockTrader() {
-        this.quote.setTickerSymbol("APPL");
+    public BasicStockService(StockQuote quote) {
+        this.quote = quote;
     }
 
     /**
      *
-     * @param symbol the stock symbol of the company you want a quote for.
-     * e.g. APPL for APPLE
-     * @return
+     * @return quote Stock Quote
      */
-    public StockQuote getQuote(String symbol) {
+    public StockQuote getQuote() {
         return (this.quote);
     }
+
+
+    /**
+     * @param q Stock Quote
+      */
+    public void addQuote(StockQuote q) {
+        this.historyQuotes.add(q);
+    }
+
+    /**
+     *
+     * @param symbol
+     * @param from
+     * @param until
+     * @return
+     */
+    public List<StockQuote> getQuoteHist(String symbol, Calendar from, Calendar until) {
+
+        List<StockQuote> returnList = new ArrayList<>();
+
+        for (StockQuote q : this.historyQuotes){
+            if (q.getDateOfQuote().after(from) && q.getDateOfQuote().before(until)) {
+                returnList.add(q);
+            } else if (q.getDateOfQuote().compareTo(from) == 0) {
+                returnList.add(q);
+            } else if (q.getDateOfQuote().compareTo(until) == 0) {
+                returnList.add(q);
+            }
+        }
+        return returnList;
+    }
+
+    /**
+     * print the full quote history
+     */
+    public void printHist() {
+        for (StockQuote q : this.historyQuotes){
+            System.out.println(q.toString());
+        }
+
+    }
+
 }
 
 /**
- * Factory class for returning instances of the StockService
+ * Factory class for returning instances of the stockservice
  */
 public class StockFactory {
 
     /**
      *
-     * @return and instance of StockTrader
+     * @return and instance of BasicStockService
      */
-    public StockService getStockService() {
+    public StockService getStockService(StockQuote quote) {
 
-        return (new StockTrader());
+        return (new BasicStockService(quote));
     }
 
 }

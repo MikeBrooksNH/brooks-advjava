@@ -8,17 +8,107 @@
  * @author Michael Brooks
  * @version 1.0
  */
-package edu.mbrooks.advancedjava.StockQuote;
-import edu.mbrooks.advancedjava.StockQuote.*;
-import edu.mbrooks.advancedjava.StockFactory.*;
-import edu.mbrooks.advancedjava.StockService.*;
+package edu.mbrooks.advancedjava.stockquote;
+
+import java.util.Calendar;
 
 /**
- *  StockQuote class is for storing information about a single stock
+ *  stockquote class is for storing information about a single stock
  */
 public class StockQuote {
 
+    Calendar today = Calendar.getInstance();;
+
     private String tickerSymbol;
+    private Calendar dateOfQuote;
+    private float ask;
+    private float bid;
+    private String CompanyName;
+    private String  exchange;   // Need a service to return the exchange the ticker symbol is on
+
+    /**
+     * Contructor starting point... this is what every constructor will do first to ensure everything is always inited to something...
+     */
+    private void Init() {
+        this.tickerSymbol = "APL";
+        this.dateOfQuote = today;
+        this.ask = 0;
+        this.bid = 0;
+        this.CompanyName = "Apple";
+        this.exchange = "NASDAQ";
+
+    }
+
+    /**
+     * no param constructor default the ticker symbol to APPL
+     */
+   public StockQuote() {
+       Init();
+    }
+
+    /**
+     *
+     * @param tickerSymbol
+     * @param dateOfQuote
+     * @param ask
+     */
+    public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask) {
+        Init();
+        this.tickerSymbol = tickerSymbol;
+        this.dateOfQuote = dateOfQuote;
+        this.ask = ask;
+    }
+
+    /**
+     *
+     * @param tickerSymbol
+     * @param dateOfQuote
+     * @param ask
+     * @param bid
+     */
+    public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask, float bid) {
+        Init();
+        this.tickerSymbol = tickerSymbol;
+        this.dateOfQuote = dateOfQuote;
+        this.ask = ask;
+        this.bid = bid;
+    }
+
+    /**
+     *
+     * @param tickerSymbol
+     * @param dateOfQuote
+     * @param ask
+     * @param bid
+     * @param companyName
+     */
+    public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask, float bid, String companyName) {
+        Init();
+        this.tickerSymbol = tickerSymbol;
+        this.dateOfQuote = dateOfQuote;
+        this.bid = bid;
+        this.ask = ask;
+        this.CompanyName = companyName;
+    }
+
+    /**
+     *
+     * @param tickerSymbol
+     * @param dateOfQuote
+     * @param ask
+     * @param bid
+     * @param companyName
+     * @param exchange
+     */
+    public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask, float bid, String companyName, String exchange) {
+        Init();
+        this.tickerSymbol = tickerSymbol;
+        this.dateOfQuote = dateOfQuote;
+        this.ask = ask;
+        this.bid = bid;
+        this.CompanyName = companyName;
+        this.exchange = exchange;
+    }
 
     /**
      *
@@ -29,31 +119,40 @@ public class StockQuote {
     }
 
     /**
-     *
-     * @param tickerSymbol a string that represens the stock's
-     */
-    public void setTickerSymbol(String tickerSymbol) {
-        this.tickerSymbol = tickerSymbol;
-    }
-
-    /**
      *  @return string representive of a JSON style string
      */
     @Override
-    public String toString() {
+    public String toString() throws NullPointerException {
 
         String returnValue = "";
 
+        String s = "";
+
         try {
-            returnValue =  "{ " + '"' + "symbol" + '"' + ": " + '"' + this.tickerSymbol + '"' + " }";
+            s = Integer.toString(this.dateOfQuote.get(Calendar.MONTH) + 1) + "/" + Integer.toString(this.dateOfQuote.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(this.dateOfQuote.get(Calendar.YEAR));
+
+            returnValue =  "{ " + '"' + "symbol" + '"' + ": " + '"' + this.tickerSymbol + '"' + ", " + '"' + "ask" + '"' + ": " + '"' + String.format("%.2f", this.ask)   + '"' +
+                     ", " + '"' + "QuoteDate" + '"' + ": " + '"' + s + '"' +
+                    ", " + '"' + "bid" + '"' + ": " + '"' + String.format("%.2f", this.bid)  + '"' +
+                    ", " + '"' + "CompanyName" + '"' + ": " + '"' + this.CompanyName  + '"' +
+                    ", " + '"' + "Exchange" + '"' + ": " + '"' + this.exchange  + '"' +
+                     " }";
         } catch (NullPointerException e) {
             System.out.println("Null Pointer exception...");
-            System.out.println(e);
+            throw (e);
         } catch (Exception e) {
             System.out.println("Some other exception is caught...");
             System.out.println(e);
         }
 
         return returnValue;
+    }
+
+    /**
+     *
+     * @return dateOfQuote
+     */
+    public Calendar getDateOfQuote() {
+        return dateOfQuote;
     }
 }
