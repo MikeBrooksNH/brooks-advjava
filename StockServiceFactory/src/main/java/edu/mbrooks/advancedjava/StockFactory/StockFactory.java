@@ -46,6 +46,7 @@ class BasicStockService implements StockService {
       */
     public void addQuote(StockQuote q) {
         this.historyQuotes.add(q);
+        this.quote = q; // the latest quote is always available...
     }
 
     /**

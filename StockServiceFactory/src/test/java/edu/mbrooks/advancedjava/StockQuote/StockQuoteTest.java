@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -53,34 +54,33 @@ public class StockQuoteTest extends TestCase {
         assertTrue("stockquote Setter / Getter: ", expectedResult == aStock.getTickerSymbol());
 
     }
-/*
+
     @Test
     public void testToString() {
 
         cal = Calendar.getInstance();
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        StockQuote aStock = new StockQuote("IBM", cal, 101F, 100.1F, "International Business Machines", "AMEX");
 
         try {
-            cal.setTime(sdf.parse("2018-06-01 12:00"));// all done
+            cal.setTime(sdf.parse("2018-05-02 12:00"));// all done
         } catch (Exception e) {
             System.out.println(e);
         }
 
+        String expectedResult = "{ " + '"' + "symbol" + '"' + ": " + '"' + "IBM" + '"' +  ", "
+                + '"' + "ask" + '"' + ": " + '"' + "101.00"  + '"' +  ", "
+                + '"' + "QuoteDate" + '"' + ": " + '"' + "2018-05-02 12:00"  + '"' +  ", "
+                + '"' + "bid" + '"' + ": " + '"' + "100.10"  + '"' +  ", "
+                + '"' + "CompanyName" + '"' + ": " + '"' + "International Business Machines"  + '"' +  ", "
+                + '"' + "Exchange" + '"' + ": " + '"' + "AMEX"  + '"' +  " }";
 
+        aStock = new StockQuote("IBM", cal, 101F, 100.1F, "International Business Machines", "AMEX");
 
-        String expectedResult = "{ " + '"' + "symbol" + '"' + " : " + '"' + "APL" + '"' +  ", "
-                + '"' + "ask" + '"' + " : " + '"' + " 120.00"  + '"' +  ", "
-                + '"' + "QuoteDate" + '"' + " : " + '"' + "6/1/2018"  + '"' +  ", "
-                + '"' + "bid" + '"' + " : " + '"' + "0.00"  + '"' +  ", "
-                + '"' + "CompanyName" + '"' + " : " + '"' + "null"  + '"' +  ", "
-                + '"' + "Exchange" + '"' + " : " + '"' + "null"  + '"' +  ", " + " }";
-
-        StockQuote aStock = new StockQuote("APL", cal,120F);
-        //String s = Integer.toString(aStock.dateOfQuote.get(Calendar.MONTH) + 1) + "/" + Integer.toString(this.dateOfQuote.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(this.dateOfQuote.get(Calendar.YEAR));
-
-        assertTrue("stockquote toString ", expectedResult == aStock.toString());
+        String compareString = aStock.toString();
+        assertTrue("stockquote toString ", expectedResult.compareTo(compareString) == 0);
     }
-*/
+
     @Test
     public void testNoParamConstructor() {
 
@@ -90,4 +90,29 @@ public class StockQuoteTest extends TestCase {
         assertTrue("No Param Contructor", aStock.getTickerSymbol() == expectedResult);
     }
 
- }
+    @Test
+    public void testConstructorWithBid() {
+
+        cal = Calendar.getInstance();
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        StockQuote aStock;
+        try {
+            cal.setTime(sdf.parse("2018-05-02 12:00"));// all done
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        String expectedResult = "{ " + '"' + "symbol" + '"' + ": " + '"' + "IBM" + '"' +  ", "
+                + '"' + "ask" + '"' + ": " + '"' + "101.00"  + '"' +  ", "
+                + '"' + "QuoteDate" + '"' + ": " + '"' + "2018-05-02 12:00"  + '"' +  ", "
+                + '"' + "bid" + '"' + ": " + '"' + "100.10"  + '"' +  ", "
+                + '"' + "CompanyName" + '"' + ": " + '"' + "Apple"  + '"' +  ", "
+                + '"' + "Exchange" + '"' + ": " + '"' + "NASDAQ"  + '"' +  " }";
+
+        aStock =  new StockQuote("IBM", cal, 101F, 100.1F);
+
+        String compareString = aStock.toString();
+        assertTrue("stockquote toString ", expectedResult.compareTo(compareString) == 0);
+    }
+
+}

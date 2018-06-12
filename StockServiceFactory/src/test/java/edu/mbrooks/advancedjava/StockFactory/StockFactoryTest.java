@@ -3,7 +3,8 @@ package edu.mbrooks.advancedjava.stockfactory;
 import junit.framework.TestCase;
 import edu.mbrooks.advancedjava.stockservice.*;
 import edu.mbrooks.advancedjava.stockquote.*;
-import org.junit.BeforeClass;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,7 +20,7 @@ public class StockFactoryTest extends TestCase {
     private Calendar cal;
     private SimpleDateFormat sdf;
 
-    @BeforeClass
+    @Before
     public void setup () {
         if (isSetup) {
             return;
@@ -36,18 +37,8 @@ public class StockFactoryTest extends TestCase {
     }
 
 
-
+    @Test
     public void testGetStockService() {
-
-
-        String expectedResult = "{ " + '"' + "symbol" + '"' + " : " + '"' + "APL" + '"' +  ", "
-                + '"' + "ask" + '"' + " : " + '"' + " 120.00"  + '"' +  ", "
-                + '"' + "QuoteDate" + '"' + " : " + '"' + "6/1/2018"  + '"' +  ", "
-                + '"' + "bid" + '"' + " : " + '"' + "0.00"  + '"' +  ", "
-                + '"' + "CompanyName" + '"' + " : " + '"' + "null"  + '"' +  ", "
-                + '"' + "Exchange" + '"' + " : " + '"' + "null"  + '"' +  ", " + " }";
-
-
 
         StockQuote quote = new StockQuote();
 
@@ -57,4 +48,5 @@ public class StockFactoryTest extends TestCase {
         assertTrue("Check Factory returns an Instance : ", apple != null);
 
     }
+
 }

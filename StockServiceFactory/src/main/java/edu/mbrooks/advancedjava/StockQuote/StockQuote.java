@@ -10,11 +10,17 @@
  */
 package edu.mbrooks.advancedjava.stockquote;
 
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
  *  stockquote class is for storing information about a single stock
+ *
+ *  This is an immutable class - once created, it cannot change because a stock quote happens at a moment in time an never changes
  */
+@Immutable
 public class StockQuote {
 
     Calendar today = Calendar.getInstance();;
@@ -126,13 +132,14 @@ public class StockQuote {
 
         String returnValue = "";
 
-        String s = "";
+        String formattedDate = "";
 
         try {
-            s = Integer.toString(this.dateOfQuote.get(Calendar.MONTH) + 1) + "/" + Integer.toString(this.dateOfQuote.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(this.dateOfQuote.get(Calendar.YEAR));
+            SimpleDateFormat  sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            formattedDate = sdf.format(this.dateOfQuote.getTime());
 
             returnValue =  "{ " + '"' + "symbol" + '"' + ": " + '"' + this.tickerSymbol + '"' + ", " + '"' + "ask" + '"' + ": " + '"' + String.format("%.2f", this.ask)   + '"' +
-                     ", " + '"' + "QuoteDate" + '"' + ": " + '"' + s + '"' +
+                     ", " + '"' + "QuoteDate" + '"' + ": " + '"' + formattedDate + '"' +
                     ", " + '"' + "bid" + '"' + ": " + '"' + String.format("%.2f", this.bid)  + '"' +
                     ", " + '"' + "CompanyName" + '"' + ": " + '"' + this.CompanyName  + '"' +
                     ", " + '"' + "Exchange" + '"' + ": " + '"' + this.exchange  + '"' +

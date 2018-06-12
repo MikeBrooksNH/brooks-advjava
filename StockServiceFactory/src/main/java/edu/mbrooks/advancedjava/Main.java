@@ -41,7 +41,7 @@ public class Main {
     try {
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-01 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-01 11:34"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 100F, 98.9F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -56,7 +56,7 @@ public class Main {
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-04 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-04 1:34"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 104F, 103.75F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
