@@ -8,20 +8,27 @@
  * @author Michael Brooks
  * @version 1.0
  */
-package edu.mbrooks.advancedjava.StockService;
-import edu.mbrooks.advancedjava.StockQuote.*;
-import edu.mbrooks.advancedjava.StockFactory.*;
-import edu.mbrooks.advancedjava.StockService.*;
+package edu.mbrooks.advancedjava.stockservice;
+import edu.mbrooks.advancedjava.stockquote.*;
+
+import java.util.Calendar;
+import java.util.List;
 
 /**
- * This is the StockService interface
+ * This is the stockservice interface
  */
 public interface StockService {
     /**
      * Return the current price for a share of stock for the given symbol
      * @param symbol the stock symbol of the company you want a quote for.
      * e.g. APPL for APPLE
-     * @return a <CODE>StockQuote </CODE> instance
+     * @return a <CODE>stockquote </CODE> instance
      */
-    StockQuote getQuote(String symbol);
+    public StockQuote getQuote();
+    public void addQuote(StockQuote q);
+    public void printHist();
+    public List<StockQuote> getQuoteHist(String symbol, Calendar from, Calendar until);
+
+
+
 }
