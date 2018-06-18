@@ -22,6 +22,7 @@ public interface StockService {
     public StockQuote getQuote();
     public void addQuote(StockQuote q);
     public void printHist();
+    public List<StockQuote> getQuoteHist(String symbol, Calendar from, Calendar until);
     public List<StockQuote> getQuoteHist(String symbol, Calendar from, Calendar until, StockQuote.Interval daily);
 
 

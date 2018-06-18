@@ -193,6 +193,15 @@ public class Main {
                 System.out.println(q.toString());
             }
 
+            histList = IBM.getQuoteHist("IBM", from,until);
+            System.out.println();
+            System.out.println("History (no interval)");
+            System.out.println("-----------------------");
+            for (StockQuote q : histList){
+                System.out.println(q.toString());
+            }
+
+
         } catch (Exception e) {
             System.out.println(e);
         }

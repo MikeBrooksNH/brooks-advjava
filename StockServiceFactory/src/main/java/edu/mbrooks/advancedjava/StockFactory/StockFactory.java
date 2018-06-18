@@ -113,6 +113,21 @@ class BasicStockService implements StockService {
     }
 
     /**
+     * This method invokes an overloaded method wiith the additional argument for the interval of daily...
+     *
+     * @param symbol Stock ticker
+     * @param from   From date
+     * @param until  To date
+     * @return list of stock quotes
+     */
+    public List<StockQuote> getQuoteHist(String symbol, Calendar from, Calendar until) {
+
+        // The only this this overloaded method does is get a list that has daily quotes
+        return getQuoteHist(symbol, from, until, StockQuote.Interval.DAILY);
+    }
+
+
+    /**
      *
      * @param symbol
      * @param from
@@ -123,6 +138,7 @@ class BasicStockService implements StockService {
         boolean hasFrequecyBeenMet = false;
         int intervalCheck = 0;
         int fuzzyTime = 0;
+        int month = 0;
         boolean q1Check = false;
         boolean q2Check = false;
         boolean q3Check = false;
@@ -145,7 +161,6 @@ class BasicStockService implements StockService {
                             }
                         }
                         break;
-
                      case DAILY:
                             if (q.getDateOfQuote().get(Calendar.DAY_OF_YEAR)  != intervalCheck) {
                                 intervalCheck = q.getDateOfQuote().get(Calendar.DAY_OF_YEAR);
@@ -166,7 +181,7 @@ class BasicStockService implements StockService {
                         break;
                     case QUARTERLY:
 
-                        int month = q.getDateOfQuote().get(Calendar.MONTH);
+                        month =  q.getDateOfQuote().get(Calendar.MONTH);
 
                         if (q.getDateOfQuote().get(Calendar.YEAR) != intervalCheck) {
                             // flipping this on the annual rollover
@@ -214,70 +229,6 @@ class BasicStockService implements StockService {
                 }
 
 
-
-/*                if (frequency == StockQuote.Interval.DAILY) {
-                    if (q.getDateOfQuote().get(Calendar.DAY_OF_YEAR)  != intervalCheck) {
-                        // for now we're assuming a quote a day
-                        intervalCheck = q.getDateOfQuote().get(Calendar.DAY_OF_YEAR);
-                        returnList.add(q);
-                    }
-                } else if (frequency == StockQuote.Interval.WEEKLY) {
-                    if (q.getDateOfQuote().get(Calendar.WEEK_OF_YEAR) != intervalCheck) {
-                        intervalCheck = q.getDateOfQuote().get(Calendar.WEEK_OF_YEAR);
-                        returnList.add(q);
-                    }
-                } else if (frequency == StockQuote.Interval.MONTHLY) {
-                    if (q.getDateOfQuote().get(Calendar.MONTH) != intervalCheck) {
-                        intervalCheck = q.getDateOfQuote().get(Calendar.MONTH);
-                        returnList.add(q);
-                    }
-                } else if (frequency == StockQuote.Interval.QUARTERLY) {
-
-                    int month = q.getDateOfQuote().get(Calendar.MONTH);
-
-                    if (q.getDateOfQuote().get(Calendar.YEAR) != intervalCheck) {
-                        // flipping this on the annual rollover
-                        intervalCheck = q.getDateOfQuote().get(Calendar.YEAR);
-                        // reset quarterly flags on the turn of the year
-                        q1Check = false;
-                        q2Check = false;
-                        q3Check = false;
-                        q4Check = false;
-                    }
-
-                    switch (whatQuarter(q.getDateOfQuote())) {
-                        case Q1:
-                            if (!q1Check) {
-                                q1Check = true;
-                                returnList.add(q);
-                            }
-                            break;
-                        case Q2:
-                            if (!q2Check) {
-                                q2Check = true;
-                                returnList.add(q);
-                            }
-                            break;
-                        case Q3:
-                            if (!q3Check) {
-                                q3Check = true;
-                                returnList.add(q);
-                            }
-                            break;
-                        case Q4:
-                            if (!q4Check) {
-                                q4Check = true;
-                                returnList.add(q);
-                            }
-                            break;
-                    }
-
-                }  else if (frequency == StockQuote.Interval.ANNUALLY) {
-                         if (q.getDateOfQuote().get(Calendar.YEAR) != intervalCheck) {
-                            intervalCheck = q.getDateOfQuote().get(Calendar.YEAR);
-                            returnList.add(q);
-                    }
-                }*/
             }
         }
         return returnList;
