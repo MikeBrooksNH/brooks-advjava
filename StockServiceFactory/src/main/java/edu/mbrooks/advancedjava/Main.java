@@ -51,7 +51,7 @@ public class Main {
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-03 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-03 1:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 99F, 98.6F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -61,57 +61,57 @@ public class Main {
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-05 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-05 2:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 103F, 102.5F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-06 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-06 2:10"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 103.20F, 102.98F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-07 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-07 2:15"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 103.25F, 102.75F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-08 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-08 2:40"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 103.10F, 102.5F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-09 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-09 3:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 103F, 102.5F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-10 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-10 3:30"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 102F, 101F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-11 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-11 4:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 100F, 99F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-12 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-12 5:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 99F, 98F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-13 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-13 8:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 98F, 97F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-14 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-13 9:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 97.5F, 97F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         cal = Calendar.getInstance();
-        cal.setTime(sdf.parse("2018-05-15 12:00"));// all done
+        cal.setTime(sdf.parse("2018-05-13 9:30"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 96.25F, 96F, "International Business Machines", "AMEX"));
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -123,6 +123,57 @@ public class Main {
         cal = Calendar.getInstance();
         cal.setTime(sdf.parse("2018-05-17 12:00"));// all done
         IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2018-06-01 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2018-06-02 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2018-06-03 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2018-07-01 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2018-07-02 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2018-07-03 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2017-06-01 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2017-06-02 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2017-06-03 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        cal = Calendar.getInstance();
+        cal.setTime(sdf.parse("2017-07-01 12:00"));// all done
+        IBM.addQuote(new StockQuote("IBM", cal, 95.75F, 95F, "International Business Machines", "AMEX"));
+
     } catch (Exception e) {
         System.out.println(e);
     }
@@ -130,10 +181,10 @@ public class Main {
         IBM.printHist();
         try {
             Calendar from = Calendar.getInstance();
-            from.setTime(sdf.parse("2018-05-02 12:00"));
+            from.setTime(sdf.parse("2011-05-02 12:00"));
             Calendar until = Calendar.getInstance();
-            until.setTime(sdf.parse("2018-05-12 12:00"));
-            histList = IBM.getQuoteHist("IBM", from,until);
+            until.setTime(sdf.parse("2018-07-31 12:00"));
+            histList = IBM.getQuoteHist("IBM", from,until,StockQuote.Interval.MONTHLY);
 
             System.out.println();
             System.out.println("History Listing");

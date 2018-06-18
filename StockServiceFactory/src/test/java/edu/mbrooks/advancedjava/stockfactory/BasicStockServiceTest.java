@@ -3,8 +3,6 @@ package edu.mbrooks.advancedjava.stockfactory;
 import edu.mbrooks.advancedjava.stockquote.StockQuote;
 import edu.mbrooks.advancedjava.stockservice.StockService;
 import junit.framework.TestCase;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +11,6 @@ import java.util.Calendar;
 public class BasicStockServiceTest extends TestCase {
 
     private static boolean isSetup = false;
-
 
     private StockFactory sFactory;
     private StockService aService;
@@ -75,6 +72,5 @@ public class BasicStockServiceTest extends TestCase {
         assertFalse("Check Factory returns an Instance : ", this.aService.getQuote().getTickerSymbol() == "APL");
 
     }
-
 
 }
