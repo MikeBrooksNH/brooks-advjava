@@ -129,8 +129,9 @@ public class BasicStockQuoteApplication {
             DatabaseStockService dbstockService = StockServiceFactory.getInstance();
             StockQuote q = dbstockService.getQuote(args[0]);
 
-            //List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil());
-            for (StockQuote aQuote : dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil())) {
+            //Call this 1 time - there is no preconcieved notion that it is being called multiple times AND the loop line is much easier to read - succinct
+            List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil());
+            for (StockQuote aQuote : tempList) {
                 System.out.println(aQuote.toString());
             }
 
