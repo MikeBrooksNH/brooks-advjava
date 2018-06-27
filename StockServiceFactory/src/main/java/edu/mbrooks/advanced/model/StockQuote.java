@@ -12,6 +12,18 @@ public class StockQuote extends StockData {
     private Date date;
     private String symbol;
 
+
+    /**
+     * enum values for hourly, daily, and weekly quotes.
+     *
+     * It was determined that when looking at historic quotes beyond that
+     * were probably not needed.
+     *
+      */
+    public enum Interval {
+        HOURLY, DAILY, WEEKLY;
+    }
+
     /**
      * Create a new instance of a StockQuote.
      *

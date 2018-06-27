@@ -35,6 +35,6 @@ public interface StockService {
      * error.
      */
     List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException;
-
+    List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, StockQuote.Interval interval)  throws StockServiceException;
 }
 

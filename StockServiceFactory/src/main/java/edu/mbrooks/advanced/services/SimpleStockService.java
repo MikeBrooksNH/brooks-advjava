@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * An implementation of the StockService that returns hard coded data.
  */
-public class SimpleStockService implements StockService {
+public abstract class SimpleStockService implements StockService {
 
     /**
      * Return the current price for a share of stock  for the given symbol

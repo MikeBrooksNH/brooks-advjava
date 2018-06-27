@@ -130,10 +130,11 @@ public class BasicStockQuoteApplication {
             StockQuote q = dbstockService.getQuote(args[0]);
 
             //Call this 1 time - there is no preconcieved notion that it is being called multiple times AND the loop line is much easier to read - succinct
-            List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil());
+            List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil(), StockQuote.Interval.WEEKLY);
             for (StockQuote aQuote : tempList) {
                 System.out.println(aQuote.toString());
             }
+            System.out.println("Size of Weekly = " + tempList.size());
 
             BasicStockQuoteApplication basicStockQuoteApplication = new BasicStockQuoteApplication(dbstockService);
             basicStockQuoteApplication.displayStockQuotes(stockQuery);
