@@ -5,9 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * JUnit test for <CODE>StockServiceFactory</CODE>
+ * JUnit test for <CODE>ServiceFactory</CODE>
  */
-public class StockServiceFactoryTest {
+public class ServiceFactoryTest {
 
     @Test
     public void testGetInstance() {

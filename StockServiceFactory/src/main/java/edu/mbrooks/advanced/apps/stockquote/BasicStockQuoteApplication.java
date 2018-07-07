@@ -1,12 +1,13 @@
 package edu.mbrooks.advanced.apps.stockquote;
 
-import edu.mbrooks.advanced.model.StockQuery;
-import edu.mbrooks.advanced.model.StockQuote;
-import edu.mbrooks.advanced.services.DatabaseStockService;
-import edu.mbrooks.advanced.services.StockService;
-import edu.mbrooks.advanced.services.StockServiceException;
-import edu.mbrooks.advanced.services.StockServiceFactory;
+import edu.mbrooks.advanced.model.*;
+import edu.mbrooks.advanced.services.*;
+import edu.mbrooks.advanced.util.DatabaseUtils;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
 
@@ -119,6 +120,7 @@ public class BasicStockQuoteApplication {
         // be optimistic init to positive values
         ProgramTerminationStatusEnum exitStatus = ProgramTerminationStatusEnum.NORMAL;
         String programTerminationMessage = "Normal program termination.";
+
         if (args.length != 3) {
             exit(ProgramTerminationStatusEnum.ABNORMAL,
                     "Please supply 3 arguments a stock symbol, a start date (MM/DD/YYYY) and end date (MM/DD/YYYY)");
@@ -146,7 +148,43 @@ public class BasicStockQuoteApplication {
             programTerminationMessage = "StockService failed: " + e.getMessage();
         }
 
-        exit(exitStatus, programTerminationMessage);
-        System.out.println("Oops could not parse a date");
+
+        try {
+            Connection connection = DatabaseUtils.getHibernateConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from person;");
+
+            DatabasePersonService PersonStocks = ServiceFactory.getInstance(); // DatabasePersonService();
+            PersonStocks ph = new PersonStocks();
+            Person person = new Person();
+
+            while (resultSet.next()) {
+                person.setId(resultSet.getInt("ID"));
+                person.setFirstName(resultSet.getString("first_name"));
+                person.setLastName(resultSet.getString("last_name"));
+                person.setBirthDate(resultSet.getTimestamp("birth_date"));
+
+                System.out.println(person.toString());
+                List<StockSymbols> phl =  PersonStocks.getStockSymbols(person);
+                for (StockSymbols h : phl) {
+                    System.out.println("\t" + h.toString());
+                }
+            }
+
+        } catch (Exception e){
+            System.out.println("Handle Exception...");
+            System.out.println(e.toString());
+            System.exit(-1);
+        }
+
     }
+
+   // exit(exitStatus, programTerminationMessage);
+   // System.out.println("Oops could not parse a date");
+   // }
+
+
+
+
+
 }

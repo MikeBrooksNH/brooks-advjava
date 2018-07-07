@@ -97,6 +97,7 @@ public class DatabaseStockService implements StockService {
     public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, StockQuote.Interval interval)  throws StockServiceException {
 
         boolean hasFrequecyBeenMet = false;
+
         int intervalCheck = 0;
         int fuzzyTime = 0;
         int month = 0;
