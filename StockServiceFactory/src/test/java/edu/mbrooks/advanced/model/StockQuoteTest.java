@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,7 +14,6 @@ import static org.junit.Assert.assertEquals;
  * JUnit test for StockQuote class
  */
 public class StockQuoteTest {
-
     private BigDecimal price;
     private Date date;
     private String symbol;

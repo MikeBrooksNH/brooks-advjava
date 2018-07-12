@@ -7,6 +7,7 @@ import edu.mbrooks.advanced.services.StockServiceException;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.xml.bind.JAXBException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class BasicStockQuoteApplicationTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void testMainNegative() {
+    public void testMainNegative()   throws JAXBException {
         BasicStockQuoteApplication.main(null);
     }
 }

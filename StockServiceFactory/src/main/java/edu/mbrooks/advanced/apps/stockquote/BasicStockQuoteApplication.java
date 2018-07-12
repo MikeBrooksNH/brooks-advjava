@@ -3,13 +3,30 @@ package edu.mbrooks.advanced.apps.stockquote;
 import edu.mbrooks.advanced.model.*;
 import edu.mbrooks.advanced.services.*;
 import edu.mbrooks.advanced.util.DatabaseUtils;
+import edu.mbrooks.advanced.xml.Stock;
+import edu.mbrooks.advanced.xml.Stocks;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+
+import java.io.FileNotFoundException;
+import java.math.BigDecimal;
+import java.sql.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import static edu.mbrooks.advanced.util.DatabaseUtils.getSessionFactory;
 
 /**
  * A simple application that shows the StockService in action.
@@ -115,28 +132,41 @@ public class BasicStockQuoteApplication {
      *
      * @param args one or more stock symbols
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws JAXBException {
 
         // be optimistic init to positive values
         ProgramTerminationStatusEnum exitStatus = ProgramTerminationStatusEnum.NORMAL;
         String programTerminationMessage = "Normal program termination.";
+        Quotes quote = new Quotes();
 
         if (args.length != 3) {
             exit(ProgramTerminationStatusEnum.ABNORMAL,
                     "Please supply 3 arguments a stock symbol, a start date (MM/DD/YYYY) and end date (MM/DD/YYYY)");
         }
-        try {
 
+
+        Stocks stocks = new Stocks();
+
+
+        // Read XML data
+        File file = new File("stock_info.xml");
+        JAXBContext jaxbContext = JAXBContext.newInstance(Stocks.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        stocks = (Stocks) unmarshaller.unmarshal(file);
+
+
+        try {
             StockQuery stockQuery = new StockQuery(args[0], args[1], args[2]);
             DatabaseStockService dbstockService = StockServiceFactory.getInstance();
             StockQuote q = dbstockService.getQuote(args[0]);
 
             //Call this 1 time - there is no preconcieved notion that it is being called multiple times AND the loop line is much easier to read - succinct
             List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil(), StockQuote.Interval.WEEKLY);
+
             for (StockQuote aQuote : tempList) {
                 System.out.println(aQuote.toString());
             }
-            System.out.println("Size of Weekly = " + tempList.size());
+//            System.out.println("Size of Weekly = " + tempList.size());
 
             BasicStockQuoteApplication basicStockQuoteApplication = new BasicStockQuoteApplication(dbstockService);
             basicStockQuoteApplication.displayStockQuotes(stockQuery);
@@ -158,6 +188,7 @@ public class BasicStockQuoteApplication {
             PersonStocks ph = new PersonStocks();
             Person person = new Person();
 
+
             while (resultSet.next()) {
                 person.setId(resultSet.getInt("ID"));
                 person.setFirstName(resultSet.getString("first_name"));
@@ -165,26 +196,64 @@ public class BasicStockQuoteApplication {
                 person.setBirthDate(resultSet.getTimestamp("birth_date"));
 
                 System.out.println(person.toString());
-                List<StockSymbols> phl =  PersonStocks.getStockSymbols(person);
+                List<StockSymbols> phl = PersonStocks.getStockSymbols(person);
                 for (StockSymbols h : phl) {
                     System.out.println("\t" + h.toString());
                 }
             }
 
-        } catch (Exception e){
+            // print out all the stocks
+            for (Stock stock : stocks.getStock()) {
+                System.out.println(stock.toString());
+                System.out.println("Beginning Transaction...");
+
+                quote.setSymbol(stock.getSymbol());
+
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                symbols.setGroupingSeparator(',');
+                symbols.setDecimalSeparator('.');
+                DecimalFormat decimalFormat = new DecimalFormat("#,##0.0#", symbols);
+                decimalFormat.setParseBigDecimal(true);
+
+                // parse the string
+                try {
+                    quote.setPrice((BigDecimal) decimalFormat.parse(stock.getPrice()));
+                    //quote.setPrice(new BigDecimal(stock.getPrice()));
+                } catch (ParseException pe) {
+                    System.out.println("Error parsing the quote price");
+                    System.exit(-1);
+                }
+                try {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    Date parsedDate = dateFormat.parse(stock.getTime());
+                    quote.setTime(new java.sql.Timestamp(parsedDate.getTime()));
+                } catch(Exception e) {
+                    System.out.println("Error Setting the correct date format");
+                    System.exit(-1);
+                }
+
+                // write the XML data to the DB
+                Session session = getSessionFactory().openSession();
+
+                session.beginTransaction();
+                session.save(quote);
+                session.getTransaction().commit();
+                session.close();
+                System.out.println(quote.toString());
+
+            }
+
+        } catch (Exception e) {
             System.out.println("Handle Exception...");
             System.out.println(e.toString());
             System.exit(-1);
         }
+        // exit(exitStatus, programTerminationMessage);
+        // System.out.println("Oops could not parse a date");
+        // }
+
 
     }
-
-   // exit(exitStatus, programTerminationMessage);
-   // System.out.println("Oops could not parse a date");
-   // }
-
-
-
 
 
 }

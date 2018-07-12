@@ -32,7 +32,7 @@ public class StockSymbols {
     }
 
     @Basic
-    @Column(name = "CompanyName", nullable = false, length = 50)
+    @Column(name = "CompanyName", length = 50)
     public String getCompanyName() {
         return companyName;
     }

@@ -20,6 +20,7 @@
         <mapping class="edu.mbrooks.advanced.model.StockSymbols"/>
         <mapping class="edu.mbrooks.advanced.model.Person"/>
         <mapping class="edu.mbrooks.advanced.model.PersonStocks"/>
+        <mapping class="edu.mbrooks.advanced.model.Quotes"/>
 
 
     </session-factory>
