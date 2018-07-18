@@ -3,12 +3,10 @@ package edu.mbrooks.advanced.apps.stockquote;
 import edu.mbrooks.advanced.model.*;
 import edu.mbrooks.advanced.services.*;
 import edu.mbrooks.advanced.util.DatabaseUtils;
+import edu.mbrooks.advanced.services.StockTradingServiceException;
 import edu.mbrooks.advanced.xml.Stock;
 import edu.mbrooks.advanced.xml.Stocks;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 
 import javax.xml.bind.JAXBContext;
@@ -16,7 +14,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.text.DecimalFormat;
@@ -44,7 +41,10 @@ public class BasicStockQuoteApplication {
 
         // for now, we just have normal or abnormal but could more specific ones as needed.
         NORMAL(0),
-        ABNORMAL(-1);
+        ABNORMAL(-1),
+        STOCKTRADING(-2),
+        DATE(-3),
+        PRICE(-4);
 
         // when the program exits, this value will be reported to underlying OS
         private int statusCode;
@@ -166,7 +166,6 @@ public class BasicStockQuoteApplication {
             for (StockQuote aQuote : tempList) {
                 System.out.println(aQuote.toString());
             }
-//            System.out.println("Size of Weekly = " + tempList.size());
 
             BasicStockQuoteApplication basicStockQuoteApplication = new BasicStockQuoteApplication(dbstockService);
             basicStockQuoteApplication.displayStockQuotes(stockQuery);
@@ -248,12 +247,25 @@ public class BasicStockQuoteApplication {
             System.out.println(e.toString());
             System.exit(-1);
         }
-        // exit(exitStatus, programTerminationMessage);
-        // System.out.println("Oops could not parse a date");
-        // }
 
+        try {
+            StockTradingService stocktradingservice = WebStockServiceFactory.getInstance();
 
+            Quotes tmpQuote = new Quotes();
+            tmpQuote = stocktradingservice.getWebServiceQuote("INTC");
+
+            Session session = getSessionFactory().openSession();
+
+            session.beginTransaction();
+            session.save(tmpQuote);
+            session.getTransaction().commit();
+            session.close();
+
+            System.out.println(tmpQuote.toString());
+        } catch (StockTradingServiceException e) {
+            System.out.println("Error getting the stock quote from the web service");
+            System.out.println(e);
+            System.exit(-1);
+        }
     }
-
-
 }

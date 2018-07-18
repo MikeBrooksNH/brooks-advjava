@@ -112,13 +112,6 @@ public class DatabaseStockService implements StockService {
         Calendar calendar = Calendar.getInstance();
 
 
-        /*
-            Was incrediblly inefficient...
-                String queryString = "select * from quotes where symbol = '" + symbol + "'";
-
-            replacing with a query that's better, using "select *" can be a huge mistake
-            if there are 1000 columns, you're goping to get them all...
-        */
         String queryString = "select symbol, time, price from quotes where symbol = '" + symbol + "' and time > '"
                 + queryFromDate + "' and time < '" + queryUntilDate + "'";
 
