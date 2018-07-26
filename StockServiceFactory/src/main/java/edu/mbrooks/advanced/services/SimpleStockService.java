@@ -23,7 +23,7 @@ public abstract class SimpleStockService implements StockService {
      *                               If this happens, trying the service may work, depending on the actual cause of the
      *                               error.
      */
-    @Override
+    //@Override
     public StockQuote getQuote(String symbol) {
         // a dead simple implementation.
         return new StockQuote(new BigDecimal(100), Calendar.getInstance().getTime(), symbol);
@@ -40,7 +40,7 @@ public abstract class SimpleStockService implements StockService {
      * If this happens, trying the service may work, depending on the actual cause of the
      * error.
      */
-    @Override
+    //@Override
     public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) {
         // a dead simple implementation.
         List<StockQuote> stockQuotes = new ArrayList<>();

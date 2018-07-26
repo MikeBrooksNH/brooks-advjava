@@ -10,10 +10,23 @@ import java.util.Objects;
 
 @Entity
 public class Quotes {
+
     private int id;
     private String symbol;
     private Timestamp time;
     private BigDecimal price;
+
+    public Quotes () {
+        try {
+            //StockQuery stockquery = new StockQuery("INTC", "2018/01/01", "2018/08/01");
+            //symbol = stockquery.getSymbol();
+            symbol = "INTC";
+            //time = Timestamp.valueOf(stockquery.getFrom().toString());
+            price = new BigDecimal("59.99");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     @Id
     @Column(name = "id", nullable = false)

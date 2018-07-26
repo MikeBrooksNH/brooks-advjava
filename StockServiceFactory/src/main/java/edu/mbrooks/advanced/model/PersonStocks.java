@@ -1,7 +1,6 @@
 package edu.mbrooks.advanced.model;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "person_stocks", catalog = "stocks") // removed before catalog: schema = "stocks", 

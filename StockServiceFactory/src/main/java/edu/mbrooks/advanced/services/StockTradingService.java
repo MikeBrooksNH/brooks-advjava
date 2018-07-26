@@ -1,5 +1,4 @@
 package edu.mbrooks.advanced.services;
-
 // information regarding methods for retrieving quote information:
 // https://github.com/WojciechZankowski/iextrading4j/blob/master/iextrading4j-api/src/main/java/pl/zankowski/iextrading4j/api/stocks/Quote.java
 
@@ -28,7 +27,7 @@ public  class StockTradingService implements WebStockService {
      * @param stockSymbol is the symbol to lookup through the web stock service
      * @return a stockquote that can be stored to the database
      */
-    public  Quotes getWebServiceQuote(String stockSymbol) throws StockTradingServiceException {
+    public Quotes getWebServiceQuote(String stockSymbol) throws StockTradingServiceException {
         Quotes localQuote = new Quotes();
 
         final IEXTradingClient iexTradingClient = IEXTradingClient.create();
@@ -42,7 +41,6 @@ public  class StockTradingService implements WebStockService {
         try {
             Timestamp t = new Timestamp(plquote.getLatestUpdate());
             localQuote.setTime(t);
-
         } catch (Exception e) {
             System.out.println("Error Setting the correct date format");
             System.out.println(e);

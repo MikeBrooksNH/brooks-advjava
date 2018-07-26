@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
  * Abstract Base class for classes that hold Stock data.
  * Provides common code for such classes including date formatting.
  */
-public abstract class StockData {
+public class StockData {
 
     /**
      * Provide a single SimpleDateFormat for consistency

@@ -1,10 +1,10 @@
 package edu.mbrooks.advanced.services;
 
-import edu.mbrooks.advanced.model.Person;
-import edu.mbrooks.advanced.model.StockSymbols;
-import edu.mbrooks.advanced.model.PersonStocks;
-import edu.mbrooks.advanced.util.DatabaseUtils;
 
+import edu.mbrooks.advanced.model.Person;
+import edu.mbrooks.advanced.model.PersonStocks;
+import edu.mbrooks.advanced.model.StockSymbols;
+import edu.mbrooks.advanced.util.DatabaseUtils;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

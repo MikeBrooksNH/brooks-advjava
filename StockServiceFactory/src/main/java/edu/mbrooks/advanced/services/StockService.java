@@ -30,7 +30,7 @@ public interface StockService {
      * @param from   the date of the first stock quote
      * @param until  the date of the last stock quote
      * @return a list of StockQuote instances
-     * @throws   StockServiceException if using the service generates an exception.
+     * @throws StockServiceException if using the service generates an exception.
      * If this happens, trying the service may work, depending on the actual cause of the
      * error.
      */

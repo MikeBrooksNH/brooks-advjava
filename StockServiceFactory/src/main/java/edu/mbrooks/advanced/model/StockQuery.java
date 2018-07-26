@@ -1,8 +1,5 @@
 package edu.mbrooks.advanced.model;
 
-
-import org.apache.http.annotation.Immutable;
-
 import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -10,7 +7,7 @@ import java.util.Calendar;
 /**
  * This class is used to a single query to stock service.
  */
-@Immutable
+
 public class StockQuery extends StockData{
 
     private String symbol;
@@ -57,4 +54,36 @@ public class StockQuery extends StockData{
     public Calendar getUntil() {
         return until;
     }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public void setFrom(String from) {
+
+    try {
+        this.from = Calendar.getInstance();
+        this.from.setTime(simpleDateFormat.parse(from));
+    } catch (Exception e) {
+        System.out.println(e);
+        System.exit(-1);
+    }
+
+
+        //this.from = from;
+    }
+
+    public void setUntil(String until) {
+        try {
+            this.until = Calendar.getInstance();
+            this.until.setTime(simpleDateFormat.parse(until));
+        } catch (Exception e) {
+            System.out.println(e);
+            System.exit(-1);
+        }
+
+
+        //this.until = until;
+    }
+
 }

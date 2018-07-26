@@ -5,11 +5,7 @@ import edu.mbrooks.advanced.util.DatabaseConnectionException;
 import edu.mbrooks.advanced.util.DatabaseUtils;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -69,7 +65,7 @@ public class DatabaseStockService implements StockService {
      * @param from   the date of the first stock quote
      * @param until  the date of the last stock quote
      * @return a list of StockQuote instances
-     * @throws   StockServiceException if using the service generates an exception.
+     * @throws StockServiceException if using the service generates an exception.
      * If this happens, trying the service may work, depending on the actual cause of the
      * error.
      */
@@ -89,7 +85,7 @@ public class DatabaseStockService implements StockService {
      * @param from   the date of the first stock quote
      * @param until  the date of the last stock quote
      * @return a list of StockQuote instances
-     * @throws   StockServiceException if using the service generates an exception.
+     * @throws StockServiceException if using the service generates an exception.
      * If this happens, trying the service may work, depending on the actual cause of the
      * error.
      */

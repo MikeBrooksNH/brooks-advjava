@@ -1,8 +1,9 @@
 package edu.mbrooks.advanced.services;
 
-import java.util.List;
 import edu.mbrooks.advanced.model.Person;
 import edu.mbrooks.advanced.model.StockSymbols;
+
+import java.util.List;
 
 
 public interface PersonService {
