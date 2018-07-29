@@ -75,6 +75,11 @@ public class DatabaseUtils {
         return configuration;
     }
 
+    /**
+     * Get a connection to the database using Java persistience and Hibernate
+     * @return connection object
+     * @throws DatabaseConnectionException indicating a problem connecting to the database
+     */
     public static Connection getHibernateConnection() throws DatabaseConnectionException {
         Connection connection = null;
         Configuration configuration = getConfiguration();
@@ -93,6 +98,11 @@ public class DatabaseUtils {
         return connection;
     }
 
+    /**
+     * Get a Database Connection
+     * @return connection object
+     * @throws DatabaseConnectionException indicating an issue connecting to the database
+     */
     public static Connection getConnection() throws DatabaseConnectionException{
         Connection connection = null;
         try {
@@ -107,7 +117,7 @@ public class DatabaseUtils {
     /**
      * A utility method that runs a db initialize script.
      * @param initializationScript    full path to the script to run to create the schema
-     * @throws DatabaseInitializationException
+     * @throws DatabaseInitializationException indicates there is a problem getting a database connection
      */
     public static void initializeDatabase(String initializationScript) throws DatabaseInitializationException {
 

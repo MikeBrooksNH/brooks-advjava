@@ -20,7 +20,7 @@ public class StockQuery extends StockData{
      *
      * @param symbol the stock symbol
      * @param from   the start date as a string in the form of yyyy/MM/dd
-     * @param from   the end date as a string in the form of yyyy/MM/dd
+     * @param until   the end date as a string in the form of yyyy/MM/dd
      * @throws ParseException if the format of the date String is incorrect. If this happens
      *                        the only recourse is to try again with a correctly formatted String.
      */
@@ -57,7 +57,7 @@ public class StockQuery extends StockData{
 
     /**
      * setter for the symbol
-     * @param symbol
+     * @param symbol - stock symbol
      */
     public void setSymbol(String symbol) {
         this.symbol = symbol;
@@ -65,7 +65,7 @@ public class StockQuery extends StockData{
 
     /**
      * setter for the from date
-     * @param from
+     * @param from - from time
      */
     public void setFrom(String from) {
         try {
@@ -79,7 +79,7 @@ public class StockQuery extends StockData{
 
     /**
      * setter for the to date
-     * @param until
+     * @param until - until time
      */
     public void setUntil(String until) {
         try {

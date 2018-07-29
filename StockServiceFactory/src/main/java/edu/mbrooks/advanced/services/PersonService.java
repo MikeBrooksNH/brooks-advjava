@@ -30,7 +30,8 @@ public interface PersonService {
     /**
      * Get a list of all a person's hobbies.
      *
-     * @return a list of hobby instances
+     * @param person a person object
+     * @return a list of hobby instance
      * @throws PersonServiceException if a service can not read or write the requested data
      *                                    or otherwise perform the requested operation.
      */

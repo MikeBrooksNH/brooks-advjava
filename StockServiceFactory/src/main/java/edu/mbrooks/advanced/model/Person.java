@@ -12,7 +12,7 @@ public class Person {
 
     /**
      * getFirstName() is the getter for the person's first name
-     * @return firstname
+     * @return firstname person's first name
      */
     public String getFirstName() {
         return firstName;
@@ -20,7 +20,7 @@ public class Person {
 
     /**
      * setFirstName() is the setter for the person's first name
-     * @param firstName
+     * @param firstName person's first name
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -28,7 +28,7 @@ public class Person {
 
     /**
      * getLastName() is the getter for the person's last name
-     * @return lastname
+     * @return lastname person's last name
      */
     public String getLastName() {
         return lastName;
@@ -36,7 +36,7 @@ public class Person {
 
     /**
      * setLastName() is setter for the person's last name
-     * @param lastName
+     * @param lastName person's last name
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -51,7 +51,7 @@ public class Person {
 
     /**
      * getId() is a the getter for the record ID
-     * @return Id
+     * @return Id database id column
      */
     public int getId() {
         return Id;
@@ -59,7 +59,7 @@ public class Person {
 
     /**
      * setId is the setting record Id - this is used for testing purposes only
-     * @param id
+     * @param id database id column
      */
     public void setId(int id) {
         Id = id;
@@ -67,7 +67,7 @@ public class Person {
 
     /**
      * toString() is used to return a standard string for this class
-     * @return String
+     * @return String standard string for first and last name
      */
     @Override
     public String toString() {
@@ -76,7 +76,7 @@ public class Person {
 
     /**
      * validateData() is used to ensure neither the first nor the last names are not set
-     * @return boolean
+     * @return boolean if this is a valid object
      */
     public boolean validateData() {
 

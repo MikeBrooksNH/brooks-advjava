@@ -59,10 +59,10 @@ public class RequestQuoteInfo extends HttpServlet {
 
     /**
      *
-     * @param request
-     * @param response
-     * @throws IOException
-     * @throws ServletException
+     * @param request http request
+     * @param response http response
+     * @throws IOException i/o exception
+     * @throws ServletException servlet exception
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {

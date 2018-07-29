@@ -30,7 +30,7 @@ public class Quotes {
 
     /**
      * getter for the row ID
-     * @return id
+     * @return id dtabase column id
      */
     @Id
     @Column(name = "id", nullable = false)
@@ -40,7 +40,7 @@ public class Quotes {
 
     /**
      * setter for the record ID - used for testing
-     * @param id
+     * @param id database id column
      */
     public void setId(int id) {
         this.id = id;
@@ -48,7 +48,7 @@ public class Quotes {
 
     /**
      * getter for the stock symbol
-     * @return symbol
+     * @return symbol stock symbol
      */
     @Basic
     @Column(name = "symbol", nullable = false, length = 4)
@@ -66,7 +66,7 @@ public class Quotes {
 
     /**
      * getter for this record
-     * @return Timestamp
+     * @return Timestamp time of the quote
      */
     @Basic
     @Column(name = "time", nullable = false)
@@ -76,7 +76,7 @@ public class Quotes {
 
     /**
      * setter for the time of the quote
-     * @param time
+     * @param time time of the quote
      */
     public void setTime(Timestamp time) {
         this.time = time;
@@ -84,7 +84,7 @@ public class Quotes {
 
     /**
      * getter for the price contained in this record
-     * @return price
+     * @return price quote price at the time
      */
     @Basic
     @Column(name = "price", nullable = false, precision = 0)
@@ -94,7 +94,7 @@ public class Quotes {
 
     /**
      * setter for the price on this record
-     * @param price
+     * @param price quote price at the time
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
@@ -129,7 +129,7 @@ public class Quotes {
 
     /**
      * Create a standard string for this class
-     * @return string
+     * @return string standard string format
      */
     public String toString() {
         return "Quote{ symbol='" + symbol +

@@ -44,8 +44,8 @@ public interface StockService {
      * @param until - end date for the quote range
      * @param interval - how oftenit should retrieve quotes for
      * @return List of quotes
-     * @throws StockServiceException
+     * @throws StockServiceException - indicates an issue with getting the list of stocks in the interval
      */
-    List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, StockQuote.Interval interval)  throws StockServiceException;
+    List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, StockQuote.Interval interval) throws StockServiceException;
 }
 

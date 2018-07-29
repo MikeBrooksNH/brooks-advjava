@@ -23,10 +23,15 @@ public abstract class SimpleStockService implements StockService {
      *                               If this happens, trying the service may work, depending on the actual cause of the
      *                               error.
      */
-    //@Override
-    public StockQuote getQuote(String symbol) {
+    @Override
+    public StockQuote getQuote(String symbol)  throws StockServiceException {
         // a dead simple implementation.
-        return new StockQuote(new BigDecimal(100), Calendar.getInstance().getTime(), symbol);
+        try {
+            return new StockQuote(new BigDecimal(100), Calendar.getInstance().getTime(), symbol);
+        } catch (Exception e) {
+
+            throw new StockServiceException("Error getting quote");
+        }
     }
 
     /**
@@ -40,16 +45,23 @@ public abstract class SimpleStockService implements StockService {
      * If this happens, trying the service may work, depending on the actual cause of the
      * error.
      */
-    //@Override
-    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) {
-        // a dead simple implementation.
-        List<StockQuote> stockQuotes = new ArrayList<>();
-        Date aDay = from.getTime();
-        while (until.after(aDay)) {
-            stockQuotes.add(new StockQuote(new BigDecimal(100), aDay, symbol));
-            from.add(Calendar.DAY_OF_YEAR, 1);
-            aDay = from.getTime();
+    @Override
+    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException {
+        try {
+            // a dead simple implementation.
+            List<StockQuote> stockQuotes = new ArrayList<>();
+            Date aDay = from.getTime();
+            while (until.after(aDay)) {
+                stockQuotes.add(new StockQuote(new BigDecimal(100), aDay, symbol));
+                from.add(Calendar.DAY_OF_YEAR, 1);
+                aDay = from.getTime();
+            }
+            return stockQuotes;
+
+        }  catch (Exception e) {
+
+            throw new StockServiceException("Error getting quote");
         }
-        return stockQuotes;
+
     }
 }

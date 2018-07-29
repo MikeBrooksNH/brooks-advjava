@@ -16,7 +16,7 @@ public class StockSymbols {
 
     /**
      * getter for id for this record
-     * @return id
+     * @return id - database id column
      */
     @Id
     @Column(name = "ID", nullable = false)
@@ -26,7 +26,7 @@ public class StockSymbols {
 
     /**
      * setter for the id of this record - this is only used for testing
-     * @param id
+     * @param id - database id column
      */
     public void setId(int id) {
         this.id = id;
@@ -34,7 +34,7 @@ public class StockSymbols {
 
     /**
      * getter for the symbol
-     * @return symbol
+     * @return symbol - stock symbol
      */
     @Basic
     @Column(name = "Symbol", nullable = false, length = 5)
@@ -44,7 +44,7 @@ public class StockSymbols {
 
     /**
      * setter for the record's symbol
-     * @param symbol
+     * @param symbol - stock symbol
      */
     public void setSymbol(String symbol) {
         this.symbol = symbol;
@@ -52,7 +52,7 @@ public class StockSymbols {
 
     /**
      * getter for the company name for this record
-     * @return companyName
+     * @return companyName - name of the company for the stock
      */
     @Basic
     @Column(name = "CompanyName", length = 50)
@@ -62,7 +62,7 @@ public class StockSymbols {
 
     /**
      * setter for the company name
-     * @param companyName
+     * @param companyName - name of the company for the stock
      */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
@@ -95,7 +95,7 @@ public class StockSymbols {
 
     /**
      * Create a standard string for this class
-     * @return string
+     * @return string - standard string for this object
      */
     @Override
     public String toString() {
