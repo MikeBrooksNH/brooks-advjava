@@ -50,9 +50,7 @@ public class DatabasePersonService implements PersonService {
                 transaction.commit();
             }
         }
-
         return returnValue;
-
     }
 
     /**
@@ -60,9 +58,6 @@ public class DatabasePersonService implements PersonService {
      *
      * @param person a person object to either update or create
      */
-
-
-
     @Override
     public void addOrUpdatePerson(Person person) {
         Session session = DatabaseUtils.getSessionFactory().openSession();
@@ -118,9 +113,7 @@ public class DatabasePersonService implements PersonService {
             }
         }
         return symbols;
-
     }
-
 
     /**
      * Assign a StockSymbols to a person.
@@ -130,7 +123,7 @@ public class DatabasePersonService implements PersonService {
      */
     @Override
     public void addStockToPerson(StockSymbols StockSymbols, Person person) {
-        Session session =  DatabaseUtils.getSessionFactory().openSession();
+        Session session = DatabaseUtils.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -149,7 +142,4 @@ public class DatabasePersonService implements PersonService {
             }
         }
     }
-
-
-
 }

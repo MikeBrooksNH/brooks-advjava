@@ -12,7 +12,6 @@ public class WebStockServiceFactory {
      *
      * @return get a <CODE>StockService</CODE> instance
      */
-
     public static StockTradingService getInstance() {
         return new StockTradingService();
     }

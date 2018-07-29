@@ -15,7 +15,6 @@ import java.sql.Timestamp;
  *
  */
 
-// This class needs to throw and exception called StockTradingServiceException
 public  class StockTradingService implements WebStockService {
 
     private String symbol;

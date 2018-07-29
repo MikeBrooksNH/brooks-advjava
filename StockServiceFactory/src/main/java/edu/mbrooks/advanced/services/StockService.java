@@ -35,6 +35,17 @@ public interface StockService {
      * error.
      */
     List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException;
+
+
+    /**
+     * Overloaded method for specifying the frequency a stock quote should be returned in
+     * @param symbol - stock symbol to look up
+     * @param from - start of date range for quotes
+     * @param until - end date for the quote range
+     * @param interval - how oftenit should retrieve quotes for
+     * @return List of quotes
+     * @throws StockServiceException
+     */
     List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, StockQuote.Interval interval)  throws StockServiceException;
 }
 

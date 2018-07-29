@@ -15,8 +15,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//import javax.security.auth.login.Configuration;
-
 /**
  * A class that contains database related utility methods.
  */

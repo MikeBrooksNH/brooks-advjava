@@ -55,24 +55,32 @@ public class StockQuery extends StockData{
         return until;
     }
 
+    /**
+     * setter for the symbol
+     * @param symbol
+     */
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 
+    /**
+     * setter for the from date
+     * @param from
+     */
     public void setFrom(String from) {
-
-    try {
-        this.from = Calendar.getInstance();
-        this.from.setTime(simpleDateFormat.parse(from));
-    } catch (Exception e) {
-        System.out.println(e);
-        System.exit(-1);
+        try {
+            this.from = Calendar.getInstance();
+            this.from.setTime(simpleDateFormat.parse(from));
+        } catch (Exception e) {
+            System.out.println(e);
+            System.exit(-1);
+        }
     }
 
-
-        //this.from = from;
-    }
-
+    /**
+     * setter for the to date
+     * @param until
+     */
     public void setUntil(String until) {
         try {
             this.until = Calendar.getInstance();
@@ -81,9 +89,6 @@ public class StockQuery extends StockData{
             System.out.println(e);
             System.exit(-1);
         }
-
-
-        //this.until = until;
     }
 
 }

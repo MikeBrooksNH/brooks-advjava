@@ -50,7 +50,7 @@ public class PersonStocks {
     }
 
     /**
-     *
+     * getter for a person based on id
      * @return get the Person associated with this stocksymbol
      */
     @ManyToOne
@@ -69,7 +69,7 @@ public class PersonStocks {
     }
 
     /**
-     *
+     * getter for a stock symbol based on the id
      * @return get the StockSymbol  associated with this Person
      */
     @ManyToOne
@@ -87,6 +87,11 @@ public class PersonStocks {
         this.stocksymbols = stocksymbols;
     }
 
+    /**
+     *
+     * @param o to compare
+     * @return boolean if it is a PersonStock or not
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,6 +104,10 @@ public class PersonStocks {
         return true;
     }
 
+    /**
+     *
+     * @return hashcode for this object
+     */
     @Override
     public int hashCode() {
         int result = id;
@@ -107,6 +116,10 @@ public class PersonStocks {
         return result;
     }
 
+    /**
+     *
+     * @return standard string representation of this class
+     */
     @Override
     public String toString() {
         return "PersonStocks{" +

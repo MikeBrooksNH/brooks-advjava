@@ -14,36 +14,65 @@ public class StockSymbols {
     private String companyName;
     private Collection<PersonStocks> personStocksBySymbolId;
 
+    /**
+     * getter for id for this record
+     * @return id
+     */
     @Id
     @Column(name = "ID", nullable = false)
     public int getId() {
         return id;
     }
 
+    /**
+     * setter for the id of this record - this is only used for testing
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * getter for the symbol
+     * @return symbol
+     */
     @Basic
     @Column(name = "Symbol", nullable = false, length = 5)
     public String getSymbol() {
         return symbol;
     }
 
+    /**
+     * setter for the record's symbol
+     * @param symbol
+     */
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 
+    /**
+     * getter for the company name for this record
+     * @return companyName
+     */
     @Basic
     @Column(name = "CompanyName", length = 50)
     public String getCompanyName() {
         return companyName;
     }
 
+    /**
+     * setter for the company name
+     * @param companyName
+     */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
+    /**
+     * verify that the objects are the same
+     * @param o Object to compare
+     * @return boolean if the objects are the same
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,12 +83,20 @@ public class StockSymbols {
                 Objects.equals(companyName, that.companyName);
     }
 
+    /**
+     *
+     * @return hashcode for this object
+     */
     @Override
     public int hashCode() {
 
         return Objects.hash(id, symbol, companyName);
     }
 
+    /**
+     * Create a standard string for this class
+     * @return string
+     */
     @Override
     public String toString() {
         return "StockSymbols{ symbol='" + symbol +
