@@ -107,9 +107,25 @@ public class DatabaseUtils {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection =   DriverManager.getConnection(DB_URL, USER, PASS);
+            connection =   DriverManager.getConnection(DB_URL,USER,PASS);
         } catch (ClassNotFoundException  | SQLException e)  {
-           throw new  DatabaseConnectionException("Could not connection to database." + e.getMessage(), e);
+            throw new  DatabaseConnectionException("Could not connection to database." + e.getMessage(), e);
+        }
+        return connection;
+    }
+
+    /**
+     * Get a Database Connection
+     * @return connection object
+     * @throws DatabaseConnectionException indicating an issue connecting to the database
+     */
+    public static Connection getConnection(String Url, String User, String Pass) throws DatabaseConnectionException{
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection =   DriverManager.getConnection(Url,User,Pass);
+        } catch (ClassNotFoundException  | SQLException e)  {
+            throw new  DatabaseConnectionException("Could not connection to database." + e.getMessage(), e);
         }
         return connection;
     }

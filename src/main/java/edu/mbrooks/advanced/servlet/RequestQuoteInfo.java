@@ -5,6 +5,7 @@ import edu.mbrooks.advanced.model.Quotes;
 import edu.mbrooks.advanced.model.StockQuery;
 import edu.mbrooks.advanced.model.StockQuote;
 import edu.mbrooks.advanced.services.*;
+import edu.mbrooks.advanced.util.ProgramConfiguration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -67,6 +68,15 @@ public class RequestQuoteInfo extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
+        // load the application properties
+        ProgramConfiguration appSettings = new ProgramConfiguration();
+        String cfgFileName = "/usr/local/server.properties";
+        appSettings.load(cfgFileName);
+
+        String DB_URL = appSettings.getConnectionString();
+        String USER = appSettings.getDBUser();
+        String PASS = appSettings.getDBPass();
+
 
         // get the request parameters from the calling jsp
         String symbol = request.getParameter(SYMBOL_PARAMETER_KEY);
@@ -85,23 +95,30 @@ public class RequestQuoteInfo extends HttpServlet {
         out.println("<title>Request Stock Quote Information Example</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h3>Request Information from the Database Example</h3><br>");
+        out.println("<h2>Request Information from the Database Example</h2><br>");
+        out.println("<h3>Properties File Contents</h3><br>");
+        out.println("connection = " + DB_URL + "<br>");
+        out.println("connection = " + USER + "<br>");
+        out.println("connection = " + PASS + "<br><br><hr>");
 
 
         try {
             StockQuery stockQuery = new StockQuery(symbol, from, until);
             DatabaseStockService dbstockService = StockServiceFactory.getInstance();
-            StockQuote q = dbstockService.getQuote(symbol);
+            StockQuote q = dbstockService.getQuote(symbol, DB_URL, USER, PASS);
+
+            out.println("<h3>Get a quotes from the DB using connection info in the properties file...</h3><br>");
+            out.println(q.toString() + "<br><br><hr>");
 
             //Call this 1 time - there is no preconcieved notion that it is being called multiple times AND the loop line is much easier to read - succinct
             List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil(), StockQuote.Interval.WEEKLY);
 
-            out.println("Got a list of quotes...<br>");
+            out.println("<h3>Get a list of quotes...</h3><br>");
 
             for (StockQuote aQuote : tempList) {
                 out.println(aQuote.toString() + "<br>");
             }
-
+            out.println("<br><hr>");
         } catch (ParseException e) {
             out.println("Parse Excpetion " + e);
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;

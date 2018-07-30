@@ -57,6 +57,47 @@ public class DatabaseStockService implements StockService {
         return stockQuotes.get(0);
     }
 
+    /**
+     * Return the current price for a share of stock  for the given symbol
+     *
+     * @param symbol the stock symbol of the company you want a quote for.
+     *               e.g. APPL for APPLE
+     * @param Url the DB URL for the connection string
+     * @param User The user to connect to the DB as
+     * @param Pass The password to connect to the DB with
+     * @return a  <CODE>BigDecimal</CODE> instance
+     * @throws StockServiceException if using the service generates an exception.
+     *                               If this happens, trying the service may work, depending on the actual cause of the
+     *                               error.
+     */
+    @Override
+    public StockQuote getQuote(String symbol,String Url, String User, String Pass) throws StockServiceException {
+        // todo - this is a pretty lame implementation why?
+        // Because your going through all the quotes in the DB to get only 1
+        //
+        try {
+            Connection connection = DatabaseUtils.getConnection(Url, User, Pass);
+            Statement statement = connection.createStatement();
+            String queryString = "select * from quotes where symbol = '" + symbol + "'";
+
+            ResultSet resultSet = statement.executeQuery(queryString);
+            stockQuotes = new ArrayList<>(resultSet.getFetchSize());
+            while(resultSet.next()) {
+                String symbolValue = resultSet.getString("symbol");
+                Date time = resultSet.getDate("time");
+                BigDecimal price = resultSet.getBigDecimal("price");
+                this.stockQuotes.add(new StockQuote(price, time, symbolValue));
+            }
+
+        } catch (DatabaseConnectionException | SQLException exception) {
+            throw new StockServiceException(exception.getMessage(), exception);
+        }
+        if (stockQuotes.isEmpty()) {
+            throw new StockServiceException("There is no stock data for:" + symbol);
+        }
+        return stockQuotes.get(0);
+    }
+
 
     /**
      * Get a historical list of stock quotes for the provide symbol
