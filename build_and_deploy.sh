@@ -29,5 +29,10 @@ else
     echo .
 fi
 
-
+mvn javadoc:javadoc
+if [ $? != 0 ]; then
+    echo .
+    echo javadoc failed to generate
+    echo .
+fi
 

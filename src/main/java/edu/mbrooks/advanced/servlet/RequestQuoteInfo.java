@@ -97,9 +97,9 @@ public class RequestQuoteInfo extends HttpServlet {
         out.println("<body>");
         out.println("<h2>Request Information from the Database Example</h2><br>");
         out.println("<h3>Properties File Contents</h3><br>");
-        out.println("connection = " + DB_URL + "<br>");
-        out.println("connection = " + USER + "<br>");
-        out.println("connection = " + PASS + "<br><br><hr>");
+        out.println("Connection String = " + DB_URL + "<br>");
+        out.println("DB User = " + USER + "<br>");
+        out.println("DB Password = " + PASS + "<br><br><hr>");
 
 
         try {

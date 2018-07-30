@@ -29,9 +29,9 @@
             <tr>
                 <!-- This doesn't seem to be getting passed along... -->
                 <td>Frequency</td>
-                <td><input type="checkbox" name="Daily"   title="Daily"/><br>
-                    <input type="checkbox" name="Weekly"  title="Weekly"/><br>
-                    <input type="checkbox" name="Monthly" title="Monthly"/><br>
+                <td><input type="checkbox" name="Daily"   title="Daily"/>Daily<br>
+                    <input type="checkbox" name="Weekly"  title="Weekly"/>Weekly<br>
+                    <input type="checkbox" name="Monthly" title="Monthly"/>Monthly<br>
                 </td>
             </tr>
         </table>
