@@ -17,15 +17,38 @@ import static org.junit.Assert.assertTrue;
  */
 public class DatabaseUtilsTest {
 
+    private String propfile = "server.properties";
+    private String DBURL;
+    private String DBUSER;
+    private String DBPASS;
+
+    private ProgramConfiguration propgetter = new ProgramConfiguration();
+
+    @Before
+    public void load() {
+        propgetter.load(propfile);
+
+        DBUSER = propgetter.getDBUser();
+        DBPASS = propgetter.getDBPass();
+        DBURL = propgetter.getConnectionString()
+    }
+    
+
     @Test
-    public void testGetConnection() throws Exception{
+    public void testGetConnectionNoParams() throws Exception{
         Connection connection = DatabaseUtils.getConnection();
-        assertNotNull("verify that we can get a connection ok",connection);
+        assertNotNull("verify that we can get a connection ok no properties",connection);
+    }
+
+    @Test
+    public void testGetConnectionWithParams() throws Exception{
+        Connection connection = DatabaseUtils.getConnection(DBURL, DBUSER, DBPASS);
+        assertNotNull("verify that we can get a connection ok with properties",connection);
     }
 
     @Test
     public void testGetConnectionWorks() throws Exception{
-        Connection connection = DatabaseUtils.getConnection();
+        Connection connection = DatabaseUtils.getConnection(DBURL, DBUSER, DBPASS);
         Statement statement = connection.createStatement();
         boolean execute = statement.execute("select * from quotes");
         assertTrue("verify that we can execute a statement",execute);
