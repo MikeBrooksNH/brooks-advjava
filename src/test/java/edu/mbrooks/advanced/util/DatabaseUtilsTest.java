@@ -30,16 +30,16 @@ public class DatabaseUtilsTest {
 
         DBUSER = propgetter.getDBUser();
         DBPASS = propgetter.getDBPass();
-        DBURL = propgetter.getConnectionString()
+        DBURL = propgetter.getConnectionString();
     }
     
 
-    @Test
+    /* @Test
     public void testGetConnectionNoParams() throws Exception{
         Connection connection = DatabaseUtils.getConnection();
         assertNotNull("verify that we can get a connection ok no properties",connection);
     }
-
+ */
     @Test
     public void testGetConnectionWithParams() throws Exception{
         Connection connection = DatabaseUtils.getConnection(DBURL, DBUSER, DBPASS);
