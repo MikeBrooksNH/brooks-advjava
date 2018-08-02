@@ -2,6 +2,7 @@ package edu.mbrooks.advanced.util;
 
 import edu.mbrooks.advanced.util.DatabaseConnectionException;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.Connection;
