@@ -13,7 +13,7 @@ public class ProgramConfigurationTest {
     private String ThreadCount="5";
     private String DBUser="monty";
     private String DBPass="some_password";
-    private String ConnectionString="jdbc:mysql://localhost:3306/stocks";
+    private String ConnectionString="jdbc:mysql://192.168.1.145:3306/stocks";
 
     private String propfile = "server.properties";
 
@@ -55,3 +55,4 @@ public class ProgramConfigurationTest {
         assertEquals("ConnectionString  matches", ConnectionString, propgetter.getConnectionString());
     }
 }
+
