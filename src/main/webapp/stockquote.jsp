@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: michaelbrooks
@@ -34,9 +35,15 @@
                     <input type="checkbox" name="Monthly" title="Monthly"/>Monthly<br>
                 </td>
             </tr>
+            <tr>
+                <!-- -->
+                <td><input type="submit" value="Web Quote" name="WebQuote" /></td>
+                <td></td>
+                <!-- <td><input type="submit" value="Submit" name="submit" /></td> -->
+            </tr>
         </table>
-        <input type="submit" value="Submit" name="submit" />
-    </form>
+        Version 0.5
+     </form>
 
 </body>
 </html>
