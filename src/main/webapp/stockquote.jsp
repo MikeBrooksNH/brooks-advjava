@@ -41,8 +41,10 @@
                 <td></td>
                 <!-- <td><input type="submit" value="Submit" name="submit" /></td> -->
             </tr>
+            <tr>
+                <td>Version 0.5</td>
+                <td></td>
         </table>
-        Version 0.5
      </form>
 
 </body>
