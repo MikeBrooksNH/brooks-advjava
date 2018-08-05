@@ -8,12 +8,12 @@ import static org.junit.Assert.*;
 public class ProgramConfigurationTest {
 
 
-    private String ServerAddress="192.168.1.136";
+    private String ServerAddress="192.168.1.137";
     private String ServerPort="8081";
     private String ThreadCount="5";
     private String DBUser="monty";
     private String DBPass="some_password";
-    private String ConnectionString="jdbc:mysql://192.168.1.145:3306/stocks";
+    private String ConnectionString="jdbc:mysql://192.168.1.137:3306/stocks";
 
     private String propfile = "server.properties";
 
