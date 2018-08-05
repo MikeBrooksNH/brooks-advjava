@@ -110,6 +110,13 @@ public class RequestWebQuoteInfo extends HttpServlet {
             System.exit(-1);
         }
 
+
+
+        out.println("<footer>");
+        out.println("<hr>");
+        out.println("Version 0.7");
+        out.println("</footer>");
+
         out.println("</body>");
         out.println("</html>");
     }

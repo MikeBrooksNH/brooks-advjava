@@ -10,6 +10,11 @@
         <servlet-class>edu.mbrooks.advanced.servlet.RequestInfo</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>RequestWebQuoteExample</servlet-name>
+        <servlet-class>edu.mbrooks.advanced.servlet.RequestWebQuoteInfo</servlet-class>
+    </servlet>
+
 
     <servlet>
         <servlet-name>ServletForwardingExample</servlet-name>
@@ -37,6 +42,11 @@
     <servlet-mapping>
         <servlet-name>RequestQuoteExample</servlet-name>
         <url-pattern>/servlets/RequestQuoteInfoExample/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RequestWebQuoteExample</servlet-name>
+        <url-pattern>/servlets/RequestWebQuoteInfoExample/*</url-pattern>
     </servlet-mapping>
 
 

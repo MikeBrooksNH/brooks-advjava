@@ -69,9 +69,11 @@ public class RequestQuoteInfo extends HttpServlet {
             throws IOException, ServletException {
 
         // load the application properties
+
         ProgramConfiguration appSettings = new ProgramConfiguration();
         String cfgFileName = "/usr/local/server.properties";
         appSettings.load(cfgFileName);
+
 
         String DB_URL = appSettings.getConnectionString();
         String USER = appSettings.getDBUser();
@@ -92,6 +94,13 @@ public class RequestQuoteInfo extends HttpServlet {
         out.println("<html>");
         out.println("<body>");
         out.println("<head>");
+/*
+        out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">");
+        out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>");
+        out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>");
+*/
+
+
         out.println("<title>Request Stock Quote Information Example</title>");
         out.println("</head>");
         out.println("<body>");
@@ -114,10 +123,12 @@ public class RequestQuoteInfo extends HttpServlet {
             List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil(), StockQuote.Interval.WEEKLY);
 
             out.println("<h3>Get a list of quotes...</h3><br>");
+            out.println("<table>");
 
             for (StockQuote aQuote : tempList) {
-                out.println(aQuote.toString() + "<br>");
+                out.println("<tr><td>" + aQuote.toString() + "<br>");
             }
+            out.println("</table>");
             out.println("<br><hr>");
         } catch (ParseException e) {
             out.println("Parse Excpetion " + e);
@@ -128,8 +139,15 @@ public class RequestQuoteInfo extends HttpServlet {
             out.println("StockServiceException " + e);
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
             programTerminationMessage = "StockService failed: " + e.getMessage();
+        } catch (Exception e) {
+            out.println("calls were:");
+            out.print("dbstockService.getQuote(" + symbol + ", " + DB_URL +", " + USER + ", " + PASS + ");");
+            out.println("Exception " + e);
+            exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
+            programTerminationMessage = "StockService failed: " + e.getMessage();
         }
 
+/*
         out.println("<br><h3>Request Information from the Web Service Example</h3><br>");
         //Get a web quote
         try {
@@ -145,6 +163,7 @@ public class RequestQuoteInfo extends HttpServlet {
             System.out.println(e);
             System.exit(-1);
         }
+*/
 
         out.println("</body>");
         out.println("</html>");

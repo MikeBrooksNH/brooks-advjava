@@ -1,38 +1,42 @@
 #!/bin/sh
 
-echo .
+echo
 echo Executing Clean...
-echo .
+echo
 
-mvn clean
+mvn clean install
 if [ $? == 0 ]; then
-    echo .
-    echo Executing install...
-    echo .
-    mvn install
+    echo
+    echo Executing deploying to Tomcat...
+    echo
+    #cp target/ExampleWebApp.war /usr/local/Cellar/tomcat/9.0.6/libexec/webapps
+    echo
+    echo         Undeploy old war file
+    echo
+    /usr/local/bin/wget wget http://tomcat:tomcat@192.168.1.137:8081/manager/text/undeploy?path=/ExampleWebApp
+    echo
+    echo         Deploy new war file
+    echo
+    /usr/local/bin/wget wget http://tomcat:tomcat@192.168.1.137:8081/manager/text/deploy?path=/ExampleWebApp&war=file:/target/ExampleWebApp.war
     if [ $? == 0 ]; then
-        if [ -f target/ExampleWebApp.war ]; then
-            echo .
-            echo Executing deploy...
-            echo .
-            cp target/ExampleWebApp.war /usr/local/Cellar/tomcat/9.0.6/libexec/webapps
-            /usr/local/bin/wget "http://tomcat:tomcat@localhost:8081/manager/reload?path=/ExampleWebApp" -O - -q
-        fi
+        echo
+        echo New war has been deployed...
+        echo
     else
-        echo .
+        echo
         echo install target failed...
-        echo .
+        echo
     fi
 else
-    echo .
-    echo clean target failed...
-    echo .
+    echo
+    echo clean / install target failed...
+    echo
 fi
 
 mvn javadoc:javadoc
 if [ $? != 0 ]; then
-    echo .
+    echo
     echo javadoc failed to generate
-    echo .
+    echo
 fi
 
