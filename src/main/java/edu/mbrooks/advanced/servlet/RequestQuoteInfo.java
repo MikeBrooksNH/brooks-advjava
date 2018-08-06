@@ -104,6 +104,7 @@ public class RequestQuoteInfo extends HttpServlet {
         out.println("<title>Request Stock Quote Information Example</title>");
         out.println("</head>");
         out.println("<body>");
+/*
         out.println("<h2>Request Information from the Database Example</h2><br>");
         out.println("<h3>Properties File Contents</h3><br>");
         out.println("Connection String = " + DB_URL + "<br>");
@@ -111,6 +112,7 @@ public class RequestQuoteInfo extends HttpServlet {
         out.println("DB Password = " + PASS + "<br><hr>");
 
         out.println("Request URI: " + request.getRequestURI());
+*/
         try {
             StockQuery stockQuery = new StockQuery(symbol, from, until);
             DatabaseStockService dbstockService = StockServiceFactory.getInstance();
@@ -124,18 +126,16 @@ public class RequestQuoteInfo extends HttpServlet {
 
             out.println("<h3>Get a list of quotes...</h3><br>");
             out.println("<table  class=\"table table-striped\">");
-
+            out.println("<tr><th>Symbol</th><th>Date</th><th>Price</th></tr>");
             for (StockQuote aQuote : tempList) {
-                out.println("<tr><td>" + aQuote.toString() + "</td</tr>");
+                out.println("<tr>");
+                out.println("<td>" + aQuote.getSymbol() + "</td>");
+                out.println("<td>" + aQuote.getDate().toString() + "</td>");
+                out.println("<td>" + aQuote.getPrice().toString() + "</td>");
             }
             out.println("</table>");
-            out.println("<br><hr>");
 
-            out.println("<footer>");
-            out.println("<hr><br>");
-            out.println("version = " + VERSION);
-            out.println("</footer>");
-
+            out.println(PrintFooter.Footer(VERSION));
         } catch (ParseException e) {
             out.println("Parse Excpetion " + e);
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;

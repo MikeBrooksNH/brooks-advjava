@@ -17,7 +17,7 @@
 <body>
 
     <!-- The mapping in the xml isn't working on Tomcat 9 -->
-<!--    <form name="stockquery" >   -->
+   <form name="stockquery" action="/ExampleWebApp/servlets/RequestQuoteInfoExample">
         <div>
             <table border="1">
                 <tr>
@@ -40,8 +40,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><a class="btn btn-default" method="get" href="/ExampleWebApp/servlets/RequestQuoteInfoExample">Quote</a></td>
-                    <td><a class="btn btn-default" href="/ExampleWebApp/servlets/RequestWebQuoteInfoExample">WebQuote </a></td>
+                    <td><input type="submit" value="Submit" name="submit"></td>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -50,7 +50,7 @@
             <hr>
             Version 0.78.3
         </footer>
-   <!--   </form>  -->
+    </form>
 
 </body>
 </html>
