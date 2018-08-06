@@ -79,7 +79,7 @@ public class RequestQuoteInfo extends HttpServlet {
         String USER = appSettings.getDBUser();
         String PASS = appSettings.getDBPass();
 
-
+        
         // get the request parameters from the calling jsp
         String symbol = request.getParameter(SYMBOL_PARAMETER_KEY);
         String from = request.getParameter(FROM_PARAMETER_KEY);
