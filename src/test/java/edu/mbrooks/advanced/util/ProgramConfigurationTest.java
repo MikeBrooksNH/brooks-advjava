@@ -14,6 +14,7 @@ public class ProgramConfigurationTest {
     private String DBUser="monty";
     private String DBPass="some_password";
     private String ConnectionString="jdbc:mysql://192.168.1.137:3306/stocks";
+    private String Version="0.8.1";
 
     private String propfile = "server.properties";
 
@@ -53,6 +54,11 @@ public class ProgramConfigurationTest {
     @Test
     public void getConnectionString() {
         assertEquals("ConnectionString  matches", ConnectionString, propgetter.getConnectionString());
+    }
+    @Test
+    public void getVersion() {
+        System.out.println("Version = " + propgetter.getVersion());
+        assertEquals("Version String  matches", Version, propgetter.getVersion());
     }
 }
 
