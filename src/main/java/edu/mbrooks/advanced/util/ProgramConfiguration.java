@@ -28,6 +28,7 @@ public class ProgramConfiguration {
     private String ConnectionString;
     private String DBUser;
     private String DBPass;
+    private String Version;
 
 
     /**
@@ -62,17 +63,17 @@ public class ProgramConfiguration {
                     serverPort = properties.getProperty(s);
                 } else if (s.compareToIgnoreCase("ThreadCount") == 0) {
                     threadCnt = properties.getProperty(s);
-                }else if (s.compareToIgnoreCase("ConnectionString") == 0) {
+                } else if (s.compareToIgnoreCase("ConnectionString") == 0) {
                     ConnectionString = properties.getProperty(s);
-                }else if (s.compareToIgnoreCase("DBUser") == 0) {
+                } else if (s.compareToIgnoreCase("DBUser") == 0) {
                     DBUser = properties.getProperty(s);
-                }else if (s.compareToIgnoreCase("DBPass") == 0) {
-
-
+                } else if (s.compareToIgnoreCase("DBPass") == 0) {
                     // Really need to consider having an encrypted password in the properties file
                     // https://stackoverflow.com/questions/1132567/encrypt-password-in-configuration-files
                     // https://dzone.com/articles/storing-passwords-java-web
                     DBPass = properties.getProperty(s);
+                } else if (s.compareToIgnoreCase("Version") == 0) {
+                    Version = properties.getProperty(s);
                 }
             }
         } catch ( Exception e ) {
@@ -128,5 +129,8 @@ public class ProgramConfiguration {
      */
     public String getConnectionString() {
         return ConnectionString;
+    }
+    public String getVersion() {
+        return Version;
     }
 }

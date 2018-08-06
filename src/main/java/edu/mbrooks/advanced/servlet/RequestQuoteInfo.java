@@ -78,6 +78,7 @@ public class RequestQuoteInfo extends HttpServlet {
         String DB_URL = appSettings.getConnectionString();
         String USER = appSettings.getDBUser();
         String PASS = appSettings.getDBPass();
+        String VERSION = appSettings.getVersion();
 
         
         // get the request parameters from the calling jsp
@@ -94,12 +95,11 @@ public class RequestQuoteInfo extends HttpServlet {
         out.println("<html>");
         out.println("<body>");
         out.println("<head>");
-/*
+
+        //Using Bootstrap ((references to the online version only
         out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">");
         out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>");
         out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>");
-*/
-
 
         out.println("<title>Request Stock Quote Information Example</title>");
         out.println("</head>");
@@ -108,9 +108,9 @@ public class RequestQuoteInfo extends HttpServlet {
         out.println("<h3>Properties File Contents</h3><br>");
         out.println("Connection String = " + DB_URL + "<br>");
         out.println("DB User = " + USER + "<br>");
-        out.println("DB Password = " + PASS + "<br><br><hr>");
+        out.println("DB Password = " + PASS + "<br><hr>");
 
-
+        out.println("Request URI: " + request.getRequestURI());
         try {
             StockQuery stockQuery = new StockQuery(symbol, from, until);
             DatabaseStockService dbstockService = StockServiceFactory.getInstance();
@@ -123,13 +123,19 @@ public class RequestQuoteInfo extends HttpServlet {
             List<StockQuote> tempList = dbstockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil(), StockQuote.Interval.WEEKLY);
 
             out.println("<h3>Get a list of quotes...</h3><br>");
-            out.println("<table>");
+            out.println("<table  class=\"table table-striped\">");
 
             for (StockQuote aQuote : tempList) {
-                out.println("<tr><td>" + aQuote.toString() + "<br>");
+                out.println("<tr><td>" + aQuote.toString() + "</td</tr>");
             }
             out.println("</table>");
             out.println("<br><hr>");
+
+            out.println("<footer>");
+            out.println("<hr><br>");
+            out.println("version = " + VERSION);
+            out.println("</footer>");
+
         } catch (ParseException e) {
             out.println("Parse Excpetion " + e);
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
@@ -146,24 +152,6 @@ public class RequestQuoteInfo extends HttpServlet {
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
             programTerminationMessage = "StockService failed: " + e.getMessage();
         }
-
-/*
-        out.println("<br><h3>Request Information from the Web Service Example</h3><br>");
-        //Get a web quote
-        try {
-            StockTradingService stocktradingservice = WebStockServiceFactory.getInstance();
-
-            Quotes tmpQuote = new Quotes();
-            tmpQuote = stocktradingservice.getWebServiceQuote(symbol);
-
-            out.println(tmpQuote.toString() + "<br>");
-
-        } catch (StockTradingServiceException e) {
-            System.out.println("Error getting the stock quote from the web service");
-            System.out.println(e);
-            System.exit(-1);
-        }
-*/
 
         out.println("</body>");
         out.println("</html>");

@@ -55,6 +55,7 @@ public class DatabaseUtilsTest {
         assertTrue("verify that we can execute a statement",execute);
     }
 
+/*
     @Test
     public void getHibernateConnection() throws Exception {
         int exitStatus = 0;
@@ -64,4 +65,5 @@ public class DatabaseUtilsTest {
             assertTrue("verify that we can execute a statement", execute);
 
     }
+*/
 }
