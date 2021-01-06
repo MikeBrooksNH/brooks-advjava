@@ -22,7 +22,7 @@ publishing {
               username 'admin'
               password 'password'
             }
-            url "http://localhost:9000/artifactory/mvn-local-snapshot"
+            url "http://192.168.1.156:9000/artifactory/mvn-local-snapshot"
         }
     }
 }
