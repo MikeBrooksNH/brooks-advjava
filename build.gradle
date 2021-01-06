@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+group = 'edu.mbrooks.advancedjava'
+version = '1.0-SNAPSHOT'
+
+description = """mbrooks-app"""
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+              username 'admin'
+              password 'password'
+            }
+            url "http://localhost:9000/artifactory/mvn-local-snapshot"
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+        
+     maven { url "https://repo.maven.apache.org/maven2" }
+}
+dependencies {
+   testCompile group: 'junit', name: 'junit', version:'3.8.1'
+}
