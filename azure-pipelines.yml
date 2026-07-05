@@ -25,6 +25,6 @@ steps:
   displayName: 'Run Raw Maven Command'
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/target'   # Path to the folder or file you want to upload
+    targetPath: '$(Pipeline.Workspace)'   # Path to the folder or file you want to upload
     artifactName: 'mbrooks-app-1.0-SNAPSHOT.jar'     # Name of the artifact 
     publishLocation: 'pipeline'           # Stores the artifact in Azure Pipelines
