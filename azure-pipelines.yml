@@ -27,4 +27,5 @@ steps:
   inputs:
     targetPath: '$(Pipeline.Workspace)'   # Path to the folder or file you want to upload
     artifactName: 'mbrooks-app-1.0-SNAPSHOT.jar'     # Name of the artifact 
-    publishLocation: 'pipeline'           # Stores the artifact in Azure Pipelines
+    #publishLocation: 'pipeline'           # Stores the artifact in Azure Pipelines
+    publishLocation: 'mbAapp'           # Stores the artifact in Azure Pipelines
