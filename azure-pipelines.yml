@@ -30,5 +30,3 @@ steps:
     #publishLocation: 'pipeline'           # Stores the artifact in Azure Pipelines
     publishLocation: 'mbAapp'           # Stores the artifact in Azure Pipelines
 
-- script: mvn deploy
-  displayName: 'Publish Maven Artifact'
