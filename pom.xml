@@ -49,28 +49,15 @@
     </dependency>
   </dependencies>
 
-<repository>
-  <id>mbApp</id>
-  <url>https://pkgs.dev.azure.com/mikebrooks0074/mvn-hello/_packaging/mbApp/maven/v1</url>
-  <releases>
-    <enabled>true</enabled>
-  </releases>
-  <snapshots>
-    <enabled>true</enabled>
-  </snapshots>
-</repository>
-  
-<!--
   <repository>
     <id>mbApp</id>
-      <url>https://pkgs.dev.azure.com/mikebrooks0074/mvn-hello/_packaging/mbApp/maven/v1</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
+    <url>https://pkgs.dev.azure.com/mikebrooks0074/mvn-hello/_packaging/mbApp/maven/v1</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
     <snapshots>
       <enabled>true</enabled>
     </snapshots>
   </repository>
--->
-  
+    
 </project>
