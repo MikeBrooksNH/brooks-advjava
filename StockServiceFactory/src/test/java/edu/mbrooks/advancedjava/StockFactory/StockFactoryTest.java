@@ -1,8 +1,8 @@
 package edu.mbrooks.advancedjava.stockfactory;
 
 import junit.framework.TestCase;
-import edu.mbrooks.advancedjava.stockservice.*;
-import edu.mbrooks.advancedjava.stockquote.*;
+import edu.mbrooks.advancedjava.stockservice.StockService;
+import edu.mbrooks.advancedjava.stockquote.StockQuote;
 import org.junit.Before;
 import org.junit.Test;
 

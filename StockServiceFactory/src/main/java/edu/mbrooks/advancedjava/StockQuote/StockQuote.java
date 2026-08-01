@@ -12,6 +12,7 @@ package edu.mbrooks.advancedjava.stockquote;
 
 import jdk.nashorn.internal.ir.annotations.Immutable;
 
+import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -23,7 +24,7 @@ import java.util.Calendar;
 @Immutable
 public class StockQuote {
 
-    Calendar today = Calendar.getInstance();;
+    private final Calendar today = Calendar.getInstance();
 
     private String tickerSymbol;
     private Calendar dateOfQuote;
@@ -32,6 +33,10 @@ public class StockQuote {
     private String CompanyName;
     private String  exchange;   // Need a service to return the exchange the ticker symbol is on
 
+
+    public enum Interval {
+        HOURLY, DAILY, WEEKLY, MONTHLY, QUARTERLY, ANNUALLY;
+    }
     /**
      * Contructor starting point... this is what every constructor will do first to ensure everything is always inited to something...
      */
@@ -42,7 +47,6 @@ public class StockQuote {
         this.bid = 0;
         this.CompanyName = "Apple";
         this.exchange = "NASDAQ";
-
     }
 
     /**
@@ -54,9 +58,9 @@ public class StockQuote {
 
     /**
      *
-     * @param tickerSymbol
-     * @param dateOfQuote
-     * @param ask
+     * @param tickerSymbol is the ticker symbol for the stock
+     * @param dateOfQuote  is the date of the quote
+     * @param ask          is the ask price
      */
     public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask) {
         Init();
@@ -67,10 +71,10 @@ public class StockQuote {
 
     /**
      *
-     * @param tickerSymbol
-     * @param dateOfQuote
-     * @param ask
-     * @param bid
+     * @param tickerSymbol is the ticker symbol for the stock
+     * @param dateOfQuote  is the date of the quote
+     * @param ask          is the ask price for buying
+     * @param bid          is the bid price for selling
      */
     public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask, float bid) {
         Init();
@@ -82,11 +86,11 @@ public class StockQuote {
 
     /**
      *
-     * @param tickerSymbol
-     * @param dateOfQuote
-     * @param ask
-     * @param bid
-     * @param companyName
+     * @param tickerSymbol is the ticker symbol for the stock
+     * @param dateOfQuote  is the date of the quote
+     * @param ask          is the ask price for buying
+     * @param bid          is the bid price for selling
+     * @param companyName  is the full company name
      */
     public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask, float bid, String companyName) {
         Init();
@@ -99,17 +103,21 @@ public class StockQuote {
 
     /**
      *
-     * @param tickerSymbol
-     * @param dateOfQuote
-     * @param ask
-     * @param bid
-     * @param companyName
-     * @param exchange
+     * @param tickerSymbol is the ticker symbol for the stock
+     * @param dateOfQuote  is the date of the quote
+     * @param ask          is the ask price for buying
+     * @param bid          is the bid price for selling
+     * @param companyName  is the full company name
+     * @param exchange     is the exchange this stock is traded on
      */
     public StockQuote(String tickerSymbol, Calendar dateOfQuote, float ask, float bid, String companyName, String exchange) {
         Init();
         this.tickerSymbol = tickerSymbol;
-        this.dateOfQuote = dateOfQuote;
+
+        if (dateOfQuote != null) {
+            this.dateOfQuote = dateOfQuote;
+        }
+
         this.ask = ask;
         this.bid = bid;
         this.CompanyName = companyName;
@@ -128,10 +136,10 @@ public class StockQuote {
      *  @return string representive of a JSON style string
      */
     @Override
+    @NotNull
     public String toString() throws NullPointerException {
 
         String returnValue = "";
-
         String formattedDate = "";
 
         try {
@@ -146,10 +154,11 @@ public class StockQuote {
                      " }";
         } catch (NullPointerException e) {
             System.out.println("Null Pointer exception...");
-            throw (e);
+            //throw (e);
         } catch (Exception e) {
             System.out.println("Some other exception is caught...");
             System.out.println(e);
+            throw (e);
         }
 
         return returnValue;
@@ -157,7 +166,7 @@ public class StockQuote {
 
     /**
      *
-     * @return dateOfQuote
+     * @return dateOfQuote which is a Calendar class type
      */
     public Calendar getDateOfQuote() {
         return dateOfQuote;

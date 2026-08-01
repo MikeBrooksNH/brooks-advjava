@@ -1,10 +1,9 @@
 package edu.mbrooks.advancedjava.stockquote;
 
-import edu.mbrooks.advancedjava.stockfactory.StockFactory;
-import edu.mbrooks.advancedjava.stockservice.StockService;
+import edu.mbrooks.advancedjava.stockfactory.*;
+import edu.mbrooks.advancedjava.stockservice.*;
 import junit.framework.TestCase;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -36,7 +35,7 @@ public class StockQuoteTest extends TestCase {
             System.out.println(e);
         }
 
-        //sFactory = new StockFactory();
+        //sFactory = new stockfactory();
         // aService = sFactory.getStockService();
         //quote = NASDAQ.getQuote("APPL");
 
